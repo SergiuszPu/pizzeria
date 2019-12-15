@@ -10,7 +10,7 @@
     "init:gitignore:custom": "echo \"dist\" >> .gitignore",
     "test": "npm-run-all test:*",
     "test:html": "globstar nu-html-checker dist/*.html",
-    "test:js": "eslint src/js/",
+    "testjs": "eslint src/js/",
     "test:scss": "stylelint src/sass/",
     "build": "npm-run-all build:* test",
     "build:clean": "mkdirp dist && rm -r dist && mkdirp dist",

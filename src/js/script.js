@@ -52,52 +52,12 @@
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   };
 
-
-  class Product {
-    constructor(id, data) {
-      const thisProduct = this;
-
-      thisProduct.id = id;
-      thisProduct.data = data;
-
-      thisProduct.renderInMenu();
-
-      console.log('new Product', thisProduct);
-    }
-
-    // metoda która tworzy(renderuje) nasze produkty na stronie
-    renderInMenu() {
-      const thisProduct = this;
-
-      //generate HTML based on template 
-      const generatedHTML = templated.menuProduct(thisProduct.data);
-      console.log(generatedHTML);
-      
-      //create element using utils.createElementFromHTML
-
-      //find menu container
-
-      //add element to menu
-    }
-  };
-
   const app = {
-    initMenu: function () {
-      const thisApp = this;
-      console.log('thisApp.data:', thisApp.data);
-
-      for (let productData in thisApp.data.Products) {
-        new Product(productData, thisApp.data.products[productData]);
-      }
-    },
-
-
-    initData: function () {
-      const thisApp = this;
-
-      thisApp.data = dataSource;
-    },
-
+    initMenu = function () {
+      const testProduct = new Product();
+      console.log('testProduct', testProduct);
+    }
+    
     init: function () {
       const thisApp = this;
       console.log('*** App starting ***');
@@ -106,11 +66,17 @@
       console.log('settings:', settings);
       console.log('templates:', templates);
 
-      thisApp.initData();
       thisApp.initMenu();
     },
   };
 
+  class Product {
+    constructor() {
+      const thisProduct = this;
 
+      console.log('new Product', thisProduct);
+
+    }
+  };
   app.init();
 }
