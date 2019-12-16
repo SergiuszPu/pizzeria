@@ -58,12 +58,12 @@
 
       thisProduct.id = id;
       thisProduct.data = data;
+      thisProduct.renderInMenu();
 
 
       console.log('new Product', thisProduct);
-
     }
-
+  
     renderInMenu() {
       const thisProduct = this;
 
@@ -76,20 +76,20 @@
 
       /*find menu container */
       const menuContainer = document.querySelector(select.containerOf.memu);
+      console.log('menuContainer is', menuContainer);
       
       /*add element to menu */
       menuContainer.appendChild(thisProduct.element);
     }
-  };
+  }
 
   const app = {
-    initMenu: function () {
+    initMenu: function() {
       const thisApp = this;
       console.log('thisApp.data', thisApp.data);
 
       for (let productData in thisApp.data.products) {
-        new Product(productData, thisApp.data.products[productData]);
-
+        new Product(productData, thisApp.data.products[productData])
       }
       //const testProduct = new Product();
       //console.log('testProduct', testProduct);
