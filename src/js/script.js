@@ -59,7 +59,7 @@
       thisProduct.id = id;
       thisProduct.data = data;
       thisProduct.renderInMenu();
-
+      thisProduct.initAccordion();
 
       console.log('new Product', thisProduct);
     }
@@ -79,7 +79,7 @@
       //console.log('menuContainer is', menuContainer);
 
       /*add element to menu */
-      menuContainer.appendChild(thisProduct.element);
+      menuContainer.appendChild(thisProduct.element);// jak mam rozumiec 
     }
 
     initAccordion() {
@@ -89,8 +89,8 @@
       const clickableTrigger = thisProduct.element;
 
       /* START: click event listener to trigger */
-      thisProduct.addEventListener('click', function() {
-console.log('click');
+      thisProduct.element.addEventListener('click', function() {
+        console.log('click');
 
         /* prevent default action for event */
         event.preventDefault();
@@ -101,14 +101,16 @@ console.log('click');
         /* find all active products */
         const activeProducts = document.querySelectorAll('.active');
         console.log(activeProducts);
-
+        
         /* START LOOP: for each active product */
         for (let activeProduct of activeProducts) {
 
           /* START: if the active product isn't the element of thisProduct */
           if (activeProduct !== clickableTrigger) {
+
             /* remove class active for the active product */
             activeProduct.classList.remove('active');
+
             /* END: if the active product isn't the element of thisProduct */
           }
           /* END LOOP: for each active product */
