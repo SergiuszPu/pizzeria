@@ -95,6 +95,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
 
 
@@ -103,7 +104,7 @@
 
       /* find the clickable trigger (the element that should react to clicking) */
       const clickTrigger = thisProduct.accordionTrigger;
-      console.log(clickTrigger);
+      //console.log(clickTrigger);
 
       /* START: click event listener to trigger */
       clickTrigger.addEventListener('click', function () {
@@ -159,7 +160,7 @@
 
     processOrder() {
       const thisProduct = this;
-      //console.log(thisProduct);
+      console.log(thisProduct);
 
       /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
       const formData = utils.serializeFormToObject(thisProduct.form);
@@ -195,17 +196,36 @@
           /* deduct price of option from price */
           if (optionSelected && !option.default) {
             price += option.price;
-          } else if(!optionSelected && option.default) {
+          } else if (!optionSelected && option.default) {
             price -= option.price;
+          }
+          const activeImages = thisProduct.imageWrapper.querySelector(' ' + paramId + ' ' + optionId);
+          console.log(activeImages);
+
+          if (optionSelected && activeImages) {
+            activeImages.classList.add(classNames.menuProduct.imageVisible);
+
+            if (!thisProduct.params[paramId]) {
+              thisProduct.params[paramId] = {
+                label: param.label,
+                options: {},
+              };
+            }
+            thisProduct.params[paramId].options[optionId] = option.label;
+          } else {
+            if (activeImages) {
+              activeImages.classList.remove(classNames.menuProduct.imageVisible);
+            }
           }
         }
       }
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.priceElem.innerHTML = thisProduct.price;
       console.log(price);
-      
+
+
     }
-    
+
   }
 
   const app = {
