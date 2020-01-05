@@ -281,7 +281,7 @@
 
       thisProduct.name = thisProduct.data.name;
       thisProduct.amount = thisProduct.amountWidget.value;
-      
+
       app.cart.add(thisProduct);
     }
   }
@@ -381,7 +381,24 @@
     }
 
     add(menuProduct) {
-      // const thisCart = this;
+      const thisCart = this;
+
+      //const generatedHTML = templates.menuProduct(thisProduct.data);
+
+      //thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+
+      //const menuContainer = document.querySelector(select.containerOf.menu);
+
+      //menuContainer.appendChild(thisProduct.element);
+
+      const generatedHTML = templates.cartProduct(menuProduct);
+
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+
+      thisCart.dom.productList.appendChild(generatedDOM);
+
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+
 
       console.log('adding product', menuProduct);
 
@@ -404,7 +421,7 @@
     initData: function () {
       const thisApp = this;
 
-      thisApp.data = dataSource; //pytanie na spotkanie z mentorem o dataSours i data??
+      thisApp.data = dataSource; 
     },
 
     initCart: function () {
