@@ -1,5 +1,7 @@
-import {templates} from '../settings.js';
+import {templates, select} from '../settings.js';
 import AmountWidget from './amountWidget.js';
+
+
 class Booking {
     constructor(widgetElem) {
 
