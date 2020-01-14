@@ -21,8 +21,8 @@ class Booking {
 
     
 
-        thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.select.querySelector(select.booking.peopleAmount);
-        thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.select.querySelector(select.booking.hoursAmount);
+        thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
+        thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
 
     }
 
