@@ -1,8 +1,17 @@
-import { settings, select, classNames} from './settings.js';
+import { settings, select, classNames, templates} from './settings.js';
 import Product from './Components/product.js';
 import Cart from './Components/cart.js';
+import Booking from './Components/booking.js';
 
 const app = {
+
+  initBooking(){
+    const thisApp = this;
+
+    const widgetElem = document.querySelector(select.containerOf.booking);
+
+    thisApp.booking = new Booking(widgetElem);
+  },
 
   initPages: function () {
     const thisApp = this;
@@ -44,7 +53,6 @@ const app = {
       })
     }
   },
-
 
   activatePage: function (pageId) {
     const thisApp = this;
@@ -131,12 +139,13 @@ const app = {
     console.log('thisApp:', thisApp);
     console.log('classNames:', classNames);
     console.log('settings:', settings);
-    //console.log('templates:', templates);
+    console.log('templates:', templates);
 
     thisApp.initPages();
     thisApp.initData();
     //thisApp.initMenu(); deleted in 9 modul and push to initMenu function
     thisApp.initCart();
+    thisApp.initBooking();
   },
 };
 
