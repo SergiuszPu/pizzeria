@@ -1,72 +1,71 @@
-import {settings, select} from '../settings.js';
+import { settings, select } from '../settings.js';
+import BaseWidget from './baseWidget.js';
 
-class AmountWidget {
-    constructor(element) {
-      const thisWidget = this;
+class AmountWidget extends BaseWidget {
+  constructor(element) {
+    super(element, settings.amountWidget.defaultValue);
 
-      thisWidget.getElements(element);
-      thisWidget.value = settings.amountWidget.defaultValue;
-      thisWidget.setValue(thisWidget.input.value);
+    const thisWidget = this;
 
-      thisWidget.initAction();
+    thisWidget.getElements(element);
 
-      //console.log('AmountWidget:', thisWidget);
-      //console.log('constructor arguments:', element);
-    }
+    /*usuwamy te dwie wartosci poniewaz teraz tym zajmuje sie  constructor klasy nadrzednej*/
+    //thisWidget.value = settings.amountWidget.defaultValue;
+    //thisWidget.setValue(thisWidget.dom.input.value);
 
-    getElements(element) {
-      const thisWidget = this;
+    thisWidget.initAction();
 
-      thisWidget.element = element;
-      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
-      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
-      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
-    }
-
-    setValue(value) {
-      const thisWidget = this;
-
-
-      const newValue = parseInt(value);
-
-      /*TODO: Add validator */
-
-      if (newValue !== thisWidget.value && newValue <= settings.amountWidget.defaultMax && newValue >= settings.amountWidget.defaultMin) {
-        thisWidget.value = newValue;
-        thisWidget.announce();
-      }
-
-      thisWidget.input.value = thisWidget.value;
-    }
-
-    initAction() {
-      const thisWidget = this;
-
-      thisWidget.input.addEventListener('change', function () {
-        thisWidget.setValue(thisWidget.input.value)
-      });
-
-      thisWidget.linkDecrease.addEventListener('click', function () {
-        event.preventDefault();
-        thisWidget.setValue(thisWidget.value - 1)
-      });
-
-      thisWidget.linkIncrease.addEventListener('click', function () {
-        event.preventDefault();
-        thisWidget.setValue(thisWidget.value + 1)
-      });
-    }
-
-    announce() {
-      const thisWidget = this;
-
-      //const event = new Event('updated');
-      const event = new CustomEvent('updated', {
-        bubbles: true
-      });
-
-      thisWidget.element.dispatchEvent(event);
-    }
+    //console.log('AmountWidget:', thisWidget);
+    //console.log('constructor arguments:', element);
   }
 
-  export default AmountWidget;
+  //getElements(element)
+  getElements() { 
+    const thisWidget = this;
+
+    //thisWidget.dom.wrapper = element; usuwamy w modu 10.3 poniewaz zajmues sie metoda baseWIdget
+    thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
+    thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
+    thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
+
+    //thisWidget.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
+    //thisWidget.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
+  }
+
+  isValid(value) {
+    return !isNaN(value)
+      && value <= settings.amountWidget.defaultMax
+      && value >= settings.amountWidget.defaultMin;
+
+  }
+
+  renderValue(){
+    const thisWidget = this;
+
+    thisWidget.dom.input.value = thisWidget.value;
+
+  }
+
+  initAction() {
+    const thisWidget = this;
+
+    thisWidget.dom.input.addEventListener('change', function () {
+      //thisWidget.setValue(thisWidget.dom.input.value);
+      thisWidget.value = thisWidget.dom.input.value;
+    });
+
+    thisWidget.dom.linkDecrease.addEventListener('click', function () {
+      event.preventDefault();
+      thisWidget.setValue(thisWidget.value - 1);
+    });
+
+    thisWidget.dom.linkIncrease.addEventListener('click', function () {
+      event.preventDefault();
+      thisWidget.setValue(thisWidget.value + 1);
+    });
+  }
+
+
+}
+
+export default AmountWidget;

@@ -1,4 +1,4 @@
-import {templates, select, classNames, settings} from '../settings.js';
+import { templates, select, classNames, settings } from '../settings.js';
 import AmountWidget from './amountWidget.js';
 
 
@@ -21,11 +21,11 @@ class Booking {
         thisBooking.dom.wrapper = element;
         thisBooking.dom.wrapper.innerHTML = generatedHTML;
 
-    
+
 
         thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
         thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
-
+        thisBooking.dom.dataPicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
     }
 
     initWidgets() {
@@ -33,8 +33,10 @@ class Booking {
 
         thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
         thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
+        thisBooking.datePicker = new AmountWidget(thisBooking.dom.datePicker);
     }
 
-}
+    
 
+}
 export default Booking;
