@@ -1,4 +1,4 @@
-import { settings } from "../settings";
+import { select, settings } from '../settings.js';
 import { utils } from '../utils.js';
 import BaseWidget from './baseWidget.js';
 
@@ -7,8 +7,13 @@ class HourPicker extends BaseWidget {
         super(wrapper, settings.hours.open);
         const thisWidget = this;
 
-        thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(thisBooking.dom.datePicker.input);
-        thisWidget.dom.output = thisWidget.dom.wrapper.querySelector(thisBooking.dom.datePicker.output);
+        console.log(wrapper);
+
+        thisWidget.dom = {};
+        thisWidget.dom.wrapper = wrapper;
+        
+        thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.hourPicker.input);
+        thisWidget.dom.output = thisWidget.dom.wrapper.querySelector(select.widgets.hourPicker.output);
 
         thisWidget.initPlugin();
         thisWidget.value = thisWidget.dom.input.value;
@@ -16,9 +21,14 @@ class HourPicker extends BaseWidget {
 
     initPlugin() {
         const thisWidget = this;
+
+        rangeSlider.create(thisWidget.dom.input)
+        
         thisWidget.dom.input.addEventListener('input', function () {
             thisWidget.value = thisWidget.dom.imput.value;
         });
+        
+
     }
 
     parseValue() {

@@ -1,4 +1,4 @@
-import { settings } from "../settings";
+import { settings, select } from "../settings.js";
 import { utils } from '../utils.js';
 import BaseWidget from './baseWidget.js';
 
@@ -8,14 +8,14 @@ class DatePicker extends BaseWidget {
 
         const thisWidget = this;
 
-        thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(thisBooking.dom.datePicker.input);
+        thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.input);
 
         thisWidget.initPlugin();
     }
 
     initPlugin() {
         const thisWidget = this;
-        
+
         thisWidget.minDate = new Date(thisWidget.value);
         thisWidget.maxDate = utils.addDays(thisWidget.minDate, settings.datePicker.maxDaysInFuture);
 
