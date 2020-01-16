@@ -1,4 +1,4 @@
-import {templates, select} from '../settings.js';
+import {templates, select, classNames, settings} from '../settings.js';
 import AmountWidget from './amountWidget.js';
 
 
@@ -8,7 +8,7 @@ class Booking {
         const thisBooking = this;
 
         thisBooking.render(widgetElem);
-        thisBooking.initWidget();
+        thisBooking.initWidgets();
 
     }
 
