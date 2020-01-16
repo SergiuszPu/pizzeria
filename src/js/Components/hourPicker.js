@@ -1,4 +1,4 @@
-import { select, settings } from '../settings.js';
+import { select,settings } from '../settings.js';
 import { utils } from '../utils.js';
 import BaseWidget from './baseWidget.js';
 
@@ -21,11 +21,14 @@ class HourPicker extends BaseWidget {
 
     initPlugin() {
         const thisWidget = this;
-
-        rangeSlider.create(thisWidget.dom.input)
         
         thisWidget.dom.input.addEventListener('input', function () {
             thisWidget.value = thisWidget.dom.imput.value;
+        });
+        rangeSlider.create(thisWidget.dom.input, {
+            onSlide: function(value){
+                thisWidget.value = value;
+            }
         });
         
 
