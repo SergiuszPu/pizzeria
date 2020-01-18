@@ -1,4 +1,4 @@
-import { select,settings } from '../settings.js';
+import { select, settings } from '../settings.js';
 import { utils } from '../utils.js';
 import BaseWidget from './baseWidget.js';
 
@@ -11,9 +11,10 @@ class HourPicker extends BaseWidget {
 
         thisWidget.dom = {};
         thisWidget.dom.wrapper = wrapper;
-        
+
         thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.hourPicker.input);
         thisWidget.dom.output = thisWidget.dom.wrapper.querySelector(select.widgets.hourPicker.output);
+        console.log(thisWidget.dom.wrapper);
 
         thisWidget.initPlugin();
         thisWidget.value = thisWidget.dom.input.value;
@@ -21,21 +22,23 @@ class HourPicker extends BaseWidget {
 
     initPlugin() {
         const thisWidget = this;
-        
+
         thisWidget.dom.input.addEventListener('input', function () {
-            thisWidget.value = thisWidget.dom.imput.value;
+            thisWidget.value = thisWidget.dom.input.value;
         });
+
         rangeSlider.create(thisWidget.dom.input, {
-            onSlide: function(value){
+            onSlide: function (value) {
                 thisWidget.value = value;
             }
         });
-        
+
 
     }
 
     parseValue() {
         return utils.numberToHour(value);
+
     }
 
     isValid() {
@@ -43,6 +46,7 @@ class HourPicker extends BaseWidget {
     }
     renderValue() {
         const thisWidget = this;
+
         thisWidget.dom.output = thisWidget.value;
     }
 }
