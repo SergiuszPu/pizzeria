@@ -9,18 +9,18 @@ class BaseWidget {
         thisWidget.correctValue = initialValue;
     }
 
-    get Value(){
+    get value(){
         const thisWidget = this;
 
         return thisWidget.correctValue;
     }
 
-    set Value(value) {
+    set value(value) {
         const thisWidget = this;
 
         const newValue = thisWidget.parseValue(value);
-        /*TODO: Add validator */
-        if (newValue !== thisWidget.correctValue && thisWidget.isValid(newValue)) {
+
+        if (newValue != thisWidget.correctValue && thisWidget.isValid(newValue)) {
             thisWidget.correctValue = newValue;
             thisWidget.announce();
         }

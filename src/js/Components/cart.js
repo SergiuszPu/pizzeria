@@ -59,7 +59,7 @@ class Cart {
       const url = settings.db.url + '/' + settings.db.order;
 
       const payload = {
-        address: 'test',
+        address: thisCart.dom.address.value,
         phone: thisCart.dom.phone.value,
         adress: thisCart.dom.address.value,
         totalNumber: thisCart.totalNumber,
@@ -92,14 +92,6 @@ class Cart {
 
     add(menuProduct) {
       const thisCart = this;
-
-      //const generatedHTML = templates.menuProduct(thisProduct.data);
-
-      //thisProduct.element = utils.createDOMFromHTML(generatedHTML);
-
-      //const menuContainer = document.querySelector(select.containerOf.menu);
-
-      //menuContainer.appendChild(thisProduct.element);
 
       const generatedHTML = templates.cartProduct(menuProduct);
 

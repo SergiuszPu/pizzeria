@@ -27,16 +27,14 @@ class HourPicker extends BaseWidget {
             thisWidget.value = thisWidget.dom.input.value;
         });
 
-        rangeSlider.create(thisWidget.dom.input, {
-            onSlide: function (value) {
-                thisWidget.value = value;
-            }
-        });
+        rangeSlider.create(thisWidget.dom.input); 
+        
+     
 
 
     }
 
-    parseValue() {
+    parseValue(value) {
         return utils.numberToHour(value);
 
     }
@@ -44,10 +42,11 @@ class HourPicker extends BaseWidget {
     isValid() {
         return true;
     }
+
     renderValue() {
         const thisWidget = this;
 
-        thisWidget.dom.output = thisWidget.value;
+        thisWidget.dom.output.innerHTML = thisWidget.value;
     }
 }
 
