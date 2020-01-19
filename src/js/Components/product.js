@@ -71,7 +71,7 @@ class Product {
         clickTrigger.parentNode.classList.toggle('active');
 
         /* find all active products */
-        const activeProducts = document.querySelectorAll('.active');
+        const activeProducts = document.querySelectorAll('product.active');
         console.log(activeProducts);
 
         /* START LOOP: for each active product */
