@@ -1,11 +1,11 @@
-import { settings, select, classNames, templates} from './settings.js';
+import { settings, select, classNames, templates } from './settings.js';
 import Product from './Components/product.js';
 import Cart from './Components/cart.js';
 import Booking from './Components/booking.js';
 
 const app = {
 
-  initBooking(){
+  initBooking() {
     const thisApp = this;
 
     const widgetElem = document.querySelector(select.containerOf.booking);
@@ -52,6 +52,7 @@ const app = {
         window.location.hash = '#' + id;
       })
     }
+    
   },
 
   activatePage: function (pageId) {
@@ -89,7 +90,7 @@ const app = {
       //new Product(productData, thisApp.data.products[productData])// zmienione w module 9 na "id";
 
     }
-    //const testProduct = n ew Product();
+    //const testProduct = newProduct();
     //console.log('testProduct', testProduct);
   },
 
@@ -133,20 +134,84 @@ const app = {
     });
   },
 
-  init: function () {
+  initCarousel() {
     const thisApp = this;
-    console.log('*** App starting ***');
-    console.log('thisApp:', thisApp);
-    console.log('classNames:', classNames);
-    console.log('settings:', settings);
-    console.log('templates:', templates);
 
-    thisApp.initPages();
-    thisApp.initData();
-    //thisApp.initMenu(); deleted in 9 modul and push to initMenu function
-    thisApp.initCart();
-    thisApp.initBooking();
+    const review = []
+
+    review[1] = {
+      title: 'Dobra ta PIZZA!!!',
+      content: 'lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumvlorem ipsum',
+      author: 'Giro'
+    };
+    review[2] = {
+      title: 'Co za SMAK',
+      content: 'lorem ipsum bom ta da lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum',
+      author: 'Sergi'
+    };
+    review[3] = {
+      title: 'Poprosze JESZCZE',
+      content: 'lorem ipsum sielalalalala lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumv',
+      author: 'Seniore'
+    };
+
+    let i = 1;
+
+    const dots = document.querySelectorAll('.dots-carousel i');
+    const title = document.querySelector('.review-title');
+    const content = document.querySelector('.review-content');
+    const author = document.querySelector('.review-author');
+
+    function changeTitle() {
+
+
+      for (let dot of dots) {
+        if (dot.id == i) {
+         console.log(dot.id);
+         console.log(i);
+         
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        } 
+
+        title.innerHTML = review[i].title;
+        content.innerHTML = review[i].content;
+        author.innerHTML = review[i].author;
+    }
+
+    if (i < review.length -1) {
+      i++;
+    } else {
+      i = 1;
+    }
+  }
+
+  console.log(review.length);
+  
+    changeTitle();
+
+//     setInterval(() => {
+//   changeTitle();
+// }, 3000);
+
   },
+
+init: function () {
+  const thisApp = this;
+  console.log('*** App starting ***');
+  console.log('thisApp:', thisApp);
+  console.log('classNames:', classNames);
+  console.log('settings:', settings);
+  console.log('templates:', templates);
+
+  thisApp.initPages();
+  thisApp.initData();
+  //thisApp.initMenu(); deleted in 9 modul and push to initMenu function
+  thisApp.initCart();
+  thisApp.initBooking();
+  thisApp.initCarousel();
+},
 };
 
 app.init();

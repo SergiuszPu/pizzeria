@@ -6,7 +6,7 @@ import HourPicker from './hourPicker.js';
 
 
 class Booking {
-    constructor(widgetElem) {
+    constructor(widgetElem, ) {
 
         const thisBooking = this;
 
@@ -97,11 +97,18 @@ class Booking {
                     thisBooking.makeBooked(utils.dateToStr(loopDate), item.hour, item.duration, item.table);
                 }
             }
-        } 
+        }
 
-        //console.log('thisBooking.booked', thisBooking.booked);
+        console.log('thisBooking.booked', thisBooking.booked);
         thisBooking.updateDOM();
+        thisBooking.rangeColourHour();
     }
+
+    selectTable() {
+        const thisBooking = this;
+
+    }
+
 
     makeBooked(date, hour, duration, table) {
         const thisBooking = this;
@@ -149,7 +156,7 @@ class Booking {
             if (
                 !allAvailable
                 &&
-                thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) > -1
+                thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
             ) {
                 table.classList.add(classNames.booking.tableBooked);
             } else {
@@ -172,6 +179,10 @@ class Booking {
         thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
         thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
         thisBooking.dom.hoursPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
+        thisBooking.dom.inputPhone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
+        thisBooking.dom.inputAddress = thisBooking.dom.wrapper.querySelector(select.booking.address);
+
+        thisBooking.dom.starter = thisBooking.dom.wrapper.querySelector(select.booking.starter);
 
         thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
     }
@@ -190,6 +201,38 @@ class Booking {
     }
 
 
+    rangeColourHour() {
+        const thisBooking = this;
+        const bookedHours = thisBooking.booked[thisBooking.date];
 
+        const sliderColor = [];
+        thisBooking.dom.rangeSlider = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.slider);
+
+        const slider = thisBooking.dom.rangeSlider;
+
+        for (let bookedHour in bookedHours) {
+            const firstOfInterval = 0;
+            const secondOfInterval = (((bookedHour - 12) + .5) * 100) / 12;
+            if (bookedHour < 24) {
+                if
+                    (bookedHours[bookedHour].length <= 1) {
+                    sliderColor
+        .push('/*' + bookedHour + '*/green ' + firstOfInterval + '%, green ' + secondOfInterval + '%');
+                } else if
+                    (bookedHours[bookedHour].length == 2) {
+                    sliderColor
+        .push('/*' + bookedHour + '*/orange ' + firstOfInterval + '%, orange ' + secondOfInterval + '% ');
+                } else if
+                    (bookedHours[bookedHour].length >= 3) {
+                    sliderColor
+        .push('/*' + bookedHour + '*/red ' + firstOfInterval + '%, red ' + secondOfInterval + '%');
+                }
+            }
+        }
+        sliderColor.sort();
+        const colorString = sliderColor.join();
+        slider.style.background = 'linear-gradient(to right, ' + colorString + ')';
+        console.log(bookedHours);
+    }
 }
 export default Booking;

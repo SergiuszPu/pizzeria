@@ -38,6 +38,7 @@ export const select = {
       wrapper: '.hour-picker',
       input: 'input[type="range"]',
       output: '.output',
+      slider: '.rangeSlider',
     },
   },
   cart: {
@@ -62,9 +63,12 @@ export const select = {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
+    starter: '.starter',
+    address: '.address [type="text"]',
   },
   nav: {
     links: '.main-nav a',
+    linksNav: '.home-page a',
   },
 
 };
