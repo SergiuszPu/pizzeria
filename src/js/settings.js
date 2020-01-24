@@ -65,10 +65,11 @@ export const select = {
     tables: '.floor-plan .table',
     starter: '.starter',
     address: '.address [type="text"]',
+    phone: '.phone [type="text"]',
   },
   nav: {
-    links: '.main-nav a',
-    linksNav: '.home-page a',
+    // links: '.main-nav a',
+    links: '.home-page a',
   },
 
 };
