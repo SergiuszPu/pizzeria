@@ -208,7 +208,7 @@ class Booking {
             if (typeof
                 thisBooking.booked[thisBooking.datePicker]
                 [thisBooking.hoursPicker] !== 'undefined') {
-                    thisBooking.booked = thisBooking.datePicker;
+                thisBooking.booked.remove('active');
 
             }
         });
@@ -228,7 +228,11 @@ class Booking {
             });
         };
     }
+    sendBooking() {
+        const thisBooking = this;
 
+        const url = settings.db.url + '/' + settings.db.booking;
+    }
     rangeColourHour() {
         const thisBooking = this;
         const bookedHours = thisBooking.booked[thisBooking.date];
