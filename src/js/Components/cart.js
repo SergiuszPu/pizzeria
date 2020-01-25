@@ -61,7 +61,6 @@ class Cart {
       const payload = {
         address: thisCart.dom.address.value,
         phone: thisCart.dom.phone.value,
-        adress: thisCart.dom.address.value,
         totalNumber: thisCart.totalNumber,
         subtotalPrice: thisCart.subtotalPrice,
         totalPrice: thisCart.totalPrice,
@@ -85,7 +84,7 @@ class Cart {
         .then(function (response) {
           return response.json();
         }).then(function (parsedResponse) {
-          console.log(parsedResponse);
+          console.log('??',parsedResponse);
         });
 
     }

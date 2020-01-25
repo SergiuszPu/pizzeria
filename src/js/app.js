@@ -52,7 +52,7 @@ const app = {
         window.location.hash = '#' + id;
       })
     }
-    
+
   },
 
   activatePage: function (pageId) {
@@ -167,51 +167,51 @@ const app = {
 
       for (let dot of dots) {
         if (dot.id == i) {
-         console.log(dot.id);
-         console.log(i);
-         
+          console.log(dot.id);
+          console.log(i);
+
           dot.classList.add('active');
         } else {
           dot.classList.remove('active');
-        } 
+        }
 
         title.innerHTML = review[i].title;
         content.innerHTML = review[i].content;
         author.innerHTML = review[i].author;
+      }
+
+      if (i < review.length - 1) {
+        i++;
+      } else {
+        i = 1;
+      }
     }
 
-    if (i < review.length -1) {
-      i++;
-    } else {
-      i = 1;
-    }
-  }
+    console.log(review.length);
 
-  console.log(review.length);
-  
     changeTitle();
 
-//     setInterval(() => {
-//   changeTitle();
-// }, 3000);
+    //     setInterval(() => {
+    //   changeTitle();
+    // }, 3000);
 
   },
 
-init: function () {
-  const thisApp = this;
-  console.log('*** App starting ***');
-  console.log('thisApp:', thisApp);
-  console.log('classNames:', classNames);
-  console.log('settings:', settings);
-  console.log('templates:', templates);
+  init: function () {
+    const thisApp = this;
+    console.log('*** App starting ***');
+    console.log('thisApp:', thisApp);
+    console.log('classNames:', classNames);
+    console.log('settings:', settings);
+    console.log('templates:', templates);
 
-  thisApp.initPages();
-  thisApp.initData();
-  //thisApp.initMenu(); deleted in 9 modul and push to initMenu function
-  thisApp.initCart();
-  thisApp.initBooking();
-  thisApp.initCarousel();
-},
+    thisApp.initPages();
+    thisApp.initData();
+    //thisApp.initMenu(); deleted in 9 modul and push to initMenu function
+    thisApp.initCart();
+    thisApp.initBooking();
+    thisApp.initCarousel();
+  },
 };
 
 app.init();
