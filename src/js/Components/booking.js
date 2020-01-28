@@ -204,13 +204,19 @@ class Booking {
             thisBooking.sendBooking();
         });
         
-        thisBooking.datePicker.addEventListener('updated', function () {
-            if (typeof thisBooking.booked[thisBooking.datePicker]
-                [thisBooking.hourPicker] !== 'undefined') {
-                thisBooking.booked.classList.remove('active');
+        // thisBooking.datePicker.addEventListener('updated', function () {
+        //     if (typeof thisBooking.booked[thisBooking.datePicker]
+        //         [thisBooking.hourPicker] !== 'undefined') {
+        //         thisBooking.booked.classList.remove('active');
 
-            }
-        });
+        //     }
+        // });
+
+        thisBooking.dom.datePicker.addEventListener('updated', function() {
+            if (thisBooking.booked[thisBooking.date] && typeof thisBooking.booked[thisBooking.date][thisBooking.hour] !== 'undefined'){
+                    thisBooking.booked.classList.remove('active');
+                }
+        })
 
         for (let table of thisBooking.dom.tables) {
             table.addEventListener('click', function () {

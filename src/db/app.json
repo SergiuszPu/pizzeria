@@ -208,9 +208,29 @@
     "event": [
       {
         "id": 1,
-        "date": "2020-01-26",
+        "date": "2020-01-29",
         "hour": "17:30",
         "table": 1,
+        "repeat": false,
+        "duration": 4,
+        "ppl": 3,
+        "starters": []
+      },
+      {
+        "id": 2,
+        "date": "2020-01-29",
+        "hour": "11:30",
+        "table": 2,
+        "repeat": false,
+        "duration": 4,
+        "ppl": 3,
+        "starters": []
+      },
+      {
+        "id": 3,
+        "date": "2020-01-29",
+        "hour": "15:30",
+        "table": 3,
         "repeat": false,
         "duration": 4,
         "ppl": 3,
