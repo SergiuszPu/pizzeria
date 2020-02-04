@@ -9,7 +9,6 @@ class Booking {
     constructor(widgetElem, ) {
         const thisBooking = this;
 
-
         thisBooking.render(widgetElem);
         thisBooking.initWidgets();
         thisBooking.getData();
@@ -203,19 +202,12 @@ class Booking {
             event.preventDefault();
             thisBooking.sendBooking();
         });
-        
-        // thisBooking.datePicker.addEventListener('updated', function () {
-        //     if (typeof thisBooking.booked[thisBooking.datePicker]
-        //         [thisBooking.hourPicker] !== 'undefined') {
-        //         thisBooking.booked.classList.remove('active');
 
-        //     }
-        // });
-
-        thisBooking.dom.datePicker.addEventListener('updated', function() {
-            if (thisBooking.booked[thisBooking.date] && typeof thisBooking.booked[thisBooking.date][thisBooking.hour] !== 'undefined'){
-                    thisBooking.booked.classList.remove('active');
-                }
+        thisBooking.dom.datePicker.addEventListener('updated', function () {
+            if (thisBooking.booked[thisBooking.date] &&
+                typeof thisBooking.booked[thisBooking.date][thisBooking.hour] !== 'undefined') {
+                thisBooking.booked.classList.remove('active');
+            }
         })
 
         for (let table of thisBooking.dom.tables) {
@@ -240,19 +232,10 @@ class Booking {
         const url = settings.db.url + '/' + settings.db.booking;
 
         const payload = {
-            datePicked: thisBooking.datePicker,
-            hourPicked: thisBooking.hourPicker,
-            Phone: thisBooking.dom.inputPhone,
-            address: thisBooking.dom.inputAddress,
-            hourAmount: thisBooking.hoursAmount,
-            peopleAmount: thisBooking.peopleAmount,
+            date: thisBooking.date,
+            hour: thisBooking.hour,
             table: thisBooking.selectTable,
-            booked: [],
         };
-
-        for (let booking of thisBooking.booked) {
-            payload.booked.push(booking.getData());
-        }
 
 
         const options = {
